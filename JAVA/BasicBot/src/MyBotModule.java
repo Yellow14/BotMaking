@@ -179,6 +179,13 @@ public class MyBotModule extends DefaultBWListener {
 		if (Broodwar.isReplay()) {
 			return;
 		}
+		
+		//yunjin-05. 봇 프로그램을 통해 기본구조 살펴보기 - 500 프레임에서 프롬프트/인게임 출력
+		if(Broodwar.getFrameCount() == 500) {
+			System.out.println("Hello Startcraft promt");
+			Broodwar.printf("Hello Startcraft game screen");
+		}
+		//
 
 		// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
 		// 타임아웃 패배, 자동 패배 체크 추가
@@ -447,12 +454,15 @@ public class MyBotModule extends DefaultBWListener {
 		if ("afap".equals(commandString)) {
 			Broodwar.setLocalSpeed(0);
 			Broodwar.setFrameSkip(0);
+			 System.out.println("changed to afap");  //yunjin-05. 봇 프로그램을 통해 기본구조 살펴보기 - 게임 타이핑을 이용한 속도 변경점 부분 -1/3
 		} else if ("fast".equals(commandString)) {
 			Broodwar.setLocalSpeed(24);
 			Broodwar.setFrameSkip(0);
+			 System.out.println("changed to fast");  //yunjin-05. 봇 프로그램을 통해 기본구조 살펴보기 - 게임 타이핑을 이용한 속도 변경점 부분 -2/3
 		} else if ("slow".equals(commandString)) {
 			Broodwar.setLocalSpeed(42);
 			Broodwar.setFrameSkip(0);
+			 System.out.println("changed to slow");  //yunjin-05. 봇 프로그램을 통해 기본구조 살펴보기 - 게임 타이핑을 이용한 속도 변경점 부분 -3/3
 		} else if ("endthegame".equals(commandString)) {
 			// Not needed if using setGUI(false).
 			Broodwar.setGUI(false);
