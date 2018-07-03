@@ -289,6 +289,7 @@ public class MapGrid {
 	
 	/**
 	 * 상대편 공격 유닛 리스트를 구한다.
+	 * 건물 중 공격할 수 있는 유닛(크립, 성큰, 캐논 등)도 포함해야 함
 	 * @param position
 	 * @param radius
 	 * @return
@@ -299,9 +300,13 @@ public class MapGrid {
 		List<Unit> unitsInRadius = MyBotModule.Broodwar.getUnitsInRadius(position, radius);
 		for (Unit u : unitsInRadius) {
 			if (u.getPlayer() == InformationManager.Instance().enemyPlayer) {
-				if ((u.getType() == UnitType.Terran_Marine 
+				if ((u.getType() == UnitType.Terran_Marine
+						|| u.getType() == UnitType.Terran_Bunker
 						|| u.getType() == UnitType.Protoss_Zealot
+						|| u.getType() == UnitType.Protoss_Photon_Cannon
 						|| u.getType() == UnitType.Zerg_Zergling
+						|| u.getType() == UnitType.Zerg_Creep_Colony
+						|| u.getType() == UnitType.Zerg_Sunken_Colony
 					) & !units.contains(u)) {
 					units.add(u);
 				}
@@ -332,6 +337,36 @@ public class MapGrid {
 		}
 		return units;
 	}	
+	
+	/**
+	 * 상대편 건물 유닛 리스트를 구한다.
+	 * (먼저 부셔야 할 건물)
+	 * @param position
+	 * @param radius
+	 * @return
+	 */
+	public List<Unit> getEnemyConstructionUnitsNear(Position position, int radius)
+	{
+		List<Unit> units = new ArrayList<>();
+		List<Unit> unitsInRadius = MyBotModule.Broodwar.getUnitsInRadius(position, radius);
+		for (Unit u : unitsInRadius) {
+			if (u.getPlayer() == InformationManager.Instance().enemyPlayer) {
+				if ((u.getType() == UnitType.Terran_Command_Center
+						|| u.getType() == UnitType.Terran_Supply_Depot
+						|| u.getType() == UnitType.Terran_Refinery
+						|| u.getType() == UnitType.Protoss_Nexus
+						|| u.getType() == UnitType.Protoss_Assimilator
+						|| u.getType() == UnitType.Protoss_Pylon
+						|| u.getType() == UnitType.Zerg_Hatchery
+						|| u.getType() == UnitType.Zerg_Spawning_Pool
+						|| u.getType() == UnitType.Zerg_Extractor
+					) & !units.contains(u)) {
+					units.add(u);
+				}
+			}
+		}
+		return units;
+	}		
 
 	int	getCellSize()
 	{

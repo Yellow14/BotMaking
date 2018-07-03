@@ -8,6 +8,7 @@ import java.util.StringTokenizer;
 import bwapi.Race;
 import bwapi.Unit;
 import bwapi.UnitType;
+import bwapi.UpgradeType;
 import bwta.BWTA;
 import bwta.BaseLocation;
 import bwta.Chokepoint;
@@ -383,26 +384,17 @@ public class StrategyManager {
 					BuildOrderItem.SeedPositionStrategy.MainBaseLocation, true);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(InformationManager.Instance().getBasicSupplyProviderUnitType(),
 					BuildOrderItem.SeedPositionStrategy.MainBaseLocation, true);
-			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Zergling,
-					BuildOrderItem.SeedPositionStrategy.MainBaseLocation, true);
-			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Zergling,
-					BuildOrderItem.SeedPositionStrategy.MainBaseLocation, true);
-			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Creep_Colony,
-					BuildOrderItem.SeedPositionStrategy.MainBaseLocation);
-			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Sunken_Colony,
-					BuildOrderItem.SeedPositionStrategy.MainBaseLocation);
 
-			/*
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Hatchery,
 					BuildOrderItem.SeedPositionStrategy.MainBaseLocation);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(InformationManager.Instance().getWorkerType(),
 					BuildOrderItem.SeedPositionStrategy.MainBaseLocation, true);
-			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Hatchery,
-					BuildOrderItem.SeedPositionStrategy.FirstExpansionLocation);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(InformationManager.Instance().getWorkerType(),
 					BuildOrderItem.SeedPositionStrategy.MainBaseLocation, true);
-			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Hatchery,
-					BuildOrderItem.SeedPositionStrategy.FirstExpansionLocation);
+			//BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Hatchery,
+			//		BuildOrderItem.SeedPositionStrategy.FirstExpansionLocation);
+			//BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Hatchery,
+			//		BuildOrderItem.SeedPositionStrategy.FirstExpansionLocation);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(InformationManager.Instance().getWorkerType(),
 					BuildOrderItem.SeedPositionStrategy.MainBaseLocation, true);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(
@@ -414,12 +406,12 @@ public class StrategyManager {
 					BuildOrderItem.SeedPositionStrategy.MainBaseLocation, true);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(InformationManager.Instance().getWorkerType(),
 					BuildOrderItem.SeedPositionStrategy.MainBaseLocation, true);
-			BuildManager.Instance().buildQueue.queueAsLowestPriority(InformationManager.Instance().getWorkerType(),
-					BuildOrderItem.SeedPositionStrategy.MainBaseLocation, true);
-			BuildManager.Instance().buildQueue.queueAsLowestPriority(InformationManager.Instance().getWorkerType(),
-					BuildOrderItem.SeedPositionStrategy.MainBaseLocation, true);
-			BuildManager.Instance().buildQueue.queueAsLowestPriority(InformationManager.Instance().getWorkerType(),
-					BuildOrderItem.SeedPositionStrategy.MainBaseLocation, true);
+			//BuildManager.Instance().buildQueue.queueAsLowestPriority(InformationManager.Instance().getWorkerType(),
+			//		BuildOrderItem.SeedPositionStrategy.MainBaseLocation, true);
+			//BuildManager.Instance().buildQueue.queueAsLowestPriority(InformationManager.Instance().getWorkerType(),
+			//		BuildOrderItem.SeedPositionStrategy.MainBaseLocation, true);
+			//BuildManager.Instance().buildQueue.queueAsLowestPriority(InformationManager.Instance().getWorkerType(),
+			//		BuildOrderItem.SeedPositionStrategy.MainBaseLocation, true);
 
 			// 가스 익스트랙터
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Extractor,
@@ -431,39 +423,51 @@ public class StrategyManager {
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Sunken_Colony,
 					BuildOrderItem.SeedPositionStrategy.MainBaseLocation);
 
-			BuildManager.Instance().buildQueue
-					.queueAsLowestPriority(InformationManager.Instance().getRefineryBuildingType());
-
 			// 저글링 이동속도 업
-			BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Metabolic_Boost);
+			// BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Metabolic_Boost);
 
 			// 에볼루션 챔버
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Evolution_Chamber);
-			// 에볼루션 챔버 . 지상유닛 업그레이드
-			BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Zerg_Melee_Attacks, false);
-			BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Zerg_Missile_Attacks, false);
-			BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Zerg_Carapace, false);
-
-			BuildManager.Instance().buildQueue.queueAsLowestPriority(InformationManager.Instance().getWorkerType());
-			BuildManager.Instance().buildQueue.queueAsLowestPriority(InformationManager.Instance().getWorkerType());
-			BuildManager.Instance().buildQueue.queueAsLowestPriority(InformationManager.Instance().getWorkerType());
-			BuildManager.Instance().buildQueue.queueAsLowestPriority(InformationManager.Instance().getWorkerType());
-			BuildManager.Instance().buildQueue.queueAsLowestPriority(InformationManager.Instance().getWorkerType());
+			
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(InformationManager.Instance().getWorkerType());
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(InformationManager.Instance().getWorkerType());
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(InformationManager.Instance().getWorkerType());
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(InformationManager.Instance().getWorkerType());
 			
 			// 스포어 코로니
-			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Creep_Colony,
-					BuildOrderItem.SeedPositionStrategy.MainBaseLocation);
-			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Spore_Colony,
-					BuildOrderItem.SeedPositionStrategy.MainBaseLocation);
+			//BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Creep_Colony, BuildOrderItem.SeedPositionStrategy.MainBaseLocation);
+			//BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Spore_Colony, BuildOrderItem.SeedPositionStrategy.MainBaseLocation);
 
 			// 히드라
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Hydralisk_Den);
+
+			// 히드라 이동속도 업
+			BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Muscular_Augments, false);
+			// 히드라 공격 사정거리 업
+			BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Grooved_Spines, false);
+
+			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Hydralisk);
+			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Hydralisk);
+			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Hydralisk);
+			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Hydralisk);
+			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Hydralisk);
+			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Hydralisk);
+			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Hydralisk);
+			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Hydralisk);
+			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Hydralisk);
+			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Hydralisk);
+			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Hydralisk);
+			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Hydralisk);
+			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Hydralisk);
+			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Hydralisk);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Hydralisk);
 
+			// 에볼루션 챔버 . 지상유닛 업그레이드
+			BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Zerg_Missile_Attacks, false);
+			//BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Zerg_Melee_Attacks, false);
+			//BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Zerg_Carapace, false);
+
+			/*
 			// 레어
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Lair);
 
@@ -473,11 +477,6 @@ public class StrategyManager {
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Antennae);
 			// 오버로드 속도 증가
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Pneumatized_Carapace);
-
-			// 히드라 이동속도 업
-			BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Muscular_Augments, false);
-			// 히드라 공격 사정거리 업
-			BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Grooved_Spines, false);
 
 			// 럴커
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(TechType.Lurker_Aspect);
@@ -713,6 +712,9 @@ public class StrategyManager {
 				}
 			}
 		}
+		
+		// TODO 한우선
+		// 전략이 바뀌거나 상황이 바뀌면 기본 변경을 변경해야 함
 	}
 
 	public void executeCombat() {
@@ -782,19 +784,31 @@ public class StrategyManager {
 								cnt++;
 								
 								List<Unit> enemyCombatUnits = new ArrayList<>();
+								List<Unit> enemyWorkerUnits = new ArrayList<>();
+								List<Unit> enemyConstructionUnits = new ArrayList<>();
 								
 								if(cnt == 1) {	// 첫번째 임의의 유닛을 기준으로 근처의 적 리스트를 구한다.
-									System.out.println(unit.getType() + ", " + unit.getID() + ", " + unit.getPosition());
-									enemyCombatUnits = MapGrid.Instance().getEnemyCombatUnitsNear(unit.getPosition(), 100);
+									enemyCombatUnits = MapGrid.Instance().getEnemyCombatUnitsNear(unit.getPosition(), 40);
+									enemyWorkerUnits = MapGrid.Instance().getEnemyWorkerUnitsNear(unit.getPosition(), 20);
+									enemyConstructionUnits = MapGrid.Instance().getEnemyConstructionUnitsNear(unit.getPosition(), 30);
 								}
 								
 								// 적이 있으면 첫번째 적에게 점사 공격을 하고 그외는 attackmove를 한다.
 								if(enemyCombatUnits.size() > 0) {
-									System.out.println("적 공격유닛 있음. attackUnit : " + enemyCombatUnits.get(0).getType());
+									System.out.println("적 공격유닛 있음. attackUnit : " + enemyCombatUnits.get(0).getType() + ", " + enemyCombatUnits.get(0).getID());
 									commandUtil.attackUnit(unit, enemyCombatUnits.get(0));
 								} else {
-									//System.out.println("적 공격유닛 없음. 본진 공격");
-									commandUtil.attackMove(unit, targetBaseLocation.getPosition());
+									if(enemyWorkerUnits.size() > 0) {
+										commandUtil.attackMove(unit, enemyWorkerUnits.get(0).getPosition());
+										System.out.println("일꾼 있음. attackUnit : " + enemyWorkerUnits.get(0).getType() + ", " + enemyWorkerUnits.get(0).getID());
+									} else {
+										if(enemyConstructionUnits.size() > 0) {
+											commandUtil.attackMove(unit, enemyConstructionUnits.get(0).getPosition());
+											System.out.println("건물 있음. attackUnit : " + enemyConstructionUnits.get(0).getType() + ", " + enemyConstructionUnits.get(0).getID());
+										} else {
+											commandUtil.attackMove(unit, targetBaseLocation.getPosition());
+										}
+									}
 								}
 								
 							}
