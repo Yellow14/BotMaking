@@ -2,13 +2,12 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.StringTokenizer;
 
 import bwapi.Race;
-import bwapi.TechType;
 import bwapi.Unit;
 import bwapi.UnitType;
-import bwapi.UpgradeType;
 import bwta.BWTA;
 import bwta.BaseLocation;
 import bwta.Chokepoint;
@@ -384,6 +383,14 @@ public class StrategyManager {
 					BuildOrderItem.SeedPositionStrategy.MainBaseLocation, true);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(InformationManager.Instance().getBasicSupplyProviderUnitType(),
 					BuildOrderItem.SeedPositionStrategy.MainBaseLocation, true);
+			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Zergling,
+					BuildOrderItem.SeedPositionStrategy.MainBaseLocation, true);
+			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Zergling,
+					BuildOrderItem.SeedPositionStrategy.MainBaseLocation, true);
+			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Creep_Colony,
+					BuildOrderItem.SeedPositionStrategy.MainBaseLocation);
+			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Sunken_Colony,
+					BuildOrderItem.SeedPositionStrategy.MainBaseLocation);
 
 			/*
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Hatchery,
@@ -721,7 +728,7 @@ public class StrategyManager {
 			}
 
 			// 전투 유닛이 2개 이상 생산되었고, 적군 위치가 파악되었으면 총공격 모드로 전환
-			if (MyBotModule.Broodwar.self().completedUnitCount(InformationManager.Instance().getBasicCombatUnitType()) > 2) {
+			if (MyBotModule.Broodwar.self().completedUnitCount(InformationManager.Instance().getBasicCombatUnitType()) > 5) {
 				if (InformationManager.Instance().enemyPlayer != null
 					&& InformationManager.Instance().enemyRace != Race.Unknown  
 					&& InformationManager.Instance().getOccupiedBaseLocations(InformationManager.Instance().enemyPlayer).size() > 0) {				
@@ -765,9 +772,18 @@ public class StrategyManager {
 											
 						// canAttack 유닛은 attackMove Command 로 공격을 보냅니다
 						if (unit.canAttack()) {
-							
 							if (unit.isIdle()) {
 								commandUtil.attackMove(unit, targetBaseLocation.getPosition());
+							} else {
+								System.out.println(unit.getType() + ", " + unit.getPosition());
+								List<Unit> enemyCombatUnits = MapGrid.Instance().getEnemyCombatUnitsNear(unit.getPosition(), 100);
+								if(enemyCombatUnits.size() > 0) {
+									System.out.println("적 공격유닛 있음. attackUnit : " + enemyCombatUnits.get(0).getType());
+									commandUtil.attackUnit(unit, enemyCombatUnits.get(0));
+								} else {
+									System.out.println("적 공격유닛 없음. 본진 공격");
+									commandUtil.attackMove(unit, targetBaseLocation.getPosition());
+								}
 							}
 						} 
 					}
@@ -786,7 +802,7 @@ public class StrategyManager {
 		// 따라서, 파일 로딩은 bwapi-data\read 폴더로부터 하시면 됩니다
 
 		// TODO : 파일명은 각자 봇 명에 맞게 수정하시기 바랍니다
-		String gameRecordFileName = "c:\\starcraft\\bwapi-data\\read\\NoNameBot_GameRecord.dat";
+		String gameRecordFileName = "bwapi-data\\read\\NoNameBot_GameRecord.dat";
 		
 		BufferedReader br = null;
 		try {
@@ -833,7 +849,7 @@ public class StrategyManager {
 		// bwapi-data\write 폴더에 저장된 파일은 대회 서버가 다음 경기 때 bwapi-data\read 폴더로 옮겨놓습니다
 
 		// TODO : 파일명은 각자 봇 명에 맞게 수정하시기 바랍니다
-		String gameRecordFileName = "c:\\starcraft\\bwapi-data\\write\\NoNameBot_GameRecord.dat";
+		String gameRecordFileName = "bwapi-data\\write\\NoNameBot_GameRecord.dat";
 
 		System.out.println("saveGameRecord to file: " + gameRecordFileName);
 
@@ -892,7 +908,7 @@ public class StrategyManager {
 		}
 
 		// TODO : 파일명은 각자 봇 명에 맞게 수정하시기 바랍니다
-		String gameLogFileName = "c:\\starcraft\\bwapi-data\\write\\NoNameBot_LastGameLog.dat";
+		String gameLogFileName = "bwapi-data\\write\\NoNameBot_LastGameLog.dat";
 
 		String mapName = MyBotModule.Broodwar.mapFileName();
 		mapName = mapName.replace(' ', '_');
