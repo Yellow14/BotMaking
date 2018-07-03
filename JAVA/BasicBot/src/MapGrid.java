@@ -258,6 +258,81 @@ public class MapGrid {
 		}
 	}
 
+	/**
+	 * 특정 위치 반경내에 유닛의 목록 리턴
+	 * 작년 2위 소스 참고
+	 * @param position
+	 * @param radius
+	 * @param ourUnits
+	 * @param oppUnits
+	 * @param unitType
+	 * @return
+	 */
+	public List<Unit> getUnitsNear(Position position, int radius, boolean ourUnits, boolean oppUnits, UnitType unitType)
+	{
+		List<Unit> units = new ArrayList<>();
+		List<Unit> unitsInRadius = MyBotModule.Broodwar.getUnitsInRadius(position, radius);
+		for (Unit u : unitsInRadius) {
+			if (ourUnits && u.getPlayer() == InformationManager.Instance().selfPlayer) {
+				if ((unitType == null || u.getType() == unitType) && !units.contains(u)) {
+					units.add(u);
+				}
+				
+			} else if (oppUnits && u.getPlayer() == InformationManager.Instance().enemyPlayer) {
+				if ((unitType == null || u.getType() == unitType) && !units.contains(u)) {
+					units.add(u);
+				}
+			}
+		}
+		return units;
+	}
+	
+	/**
+	 * 상대편 공격 유닛 리스트를 구한다.
+	 * @param position
+	 * @param radius
+	 * @return
+	 */
+	public List<Unit> getEnemyCombatUnitsNear(Position position, int radius)
+	{
+		List<Unit> units = new ArrayList<>();
+		List<Unit> unitsInRadius = MyBotModule.Broodwar.getUnitsInRadius(position, radius);
+		for (Unit u : unitsInRadius) {
+			if (u.getPlayer() == InformationManager.Instance().enemyPlayer) {
+				if ((u.getType() == UnitType.Terran_Marine 
+						|| u.getType() == UnitType.Protoss_Zealot
+						|| u.getType() == UnitType.Zerg_Zergling
+					) & !units.contains(u)) {
+					units.add(u);
+				}
+			}
+		}
+		return units;
+	}	
+	
+	/**
+	 * 상대편 일꾼 유닛 리스트를 구한다.
+	 * @param position
+	 * @param radius
+	 * @return
+	 */
+	public List<Unit> getEnemyWorkerUnitsNear(Position position, int radius)
+	{
+		List<Unit> units = new ArrayList<>();
+		List<Unit> unitsInRadius = MyBotModule.Broodwar.getUnitsInRadius(position, radius);
+		for (Unit u : unitsInRadius) {
+			if (u.getPlayer() == InformationManager.Instance().enemyPlayer) {
+				if ((u.getType() == UnitType.Terran_SCV
+						|| u.getType() == UnitType.Protoss_Probe
+						|| u.getType() == UnitType.Zerg_Drone
+					) & !units.contains(u)) {
+					units.add(u);
+				}
+			}
+		}
+		return units;
+	}	
+
 	int	getCellSize()
 	{
 		return cellSize;
