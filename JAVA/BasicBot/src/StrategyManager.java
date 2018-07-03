@@ -760,6 +760,9 @@ public class StrategyManager {
 				}
 
 				if (targetBaseLocation != null) {
+
+					int cnt = 0;
+					
 					for (Unit unit : MyBotModule.Broodwar.self().getUnits()) {
 						// 건물은 제외
 						if (unit.getType().isBuilding()) {
@@ -775,17 +778,27 @@ public class StrategyManager {
 							if (unit.isIdle()) {
 								commandUtil.attackMove(unit, targetBaseLocation.getPosition());
 							} else {
-								System.out.println(unit.getType() + ", " + unit.getPosition());
-								List<Unit> enemyCombatUnits = MapGrid.Instance().getEnemyCombatUnitsNear(unit.getPosition(), 100);
+								
+								cnt++;
+								
+								List<Unit> enemyCombatUnits = new ArrayList<>();
+								
+								if(cnt == 1) {	// 첫번째 임의의 유닛을 기준으로 근처의 적 리스트를 구한다.
+									System.out.println(unit.getType() + ", " + unit.getID() + ", " + unit.getPosition());
+									enemyCombatUnits = MapGrid.Instance().getEnemyCombatUnitsNear(unit.getPosition(), 100);
+								}
+								
+								// 적이 있으면 첫번째 적에게 점사 공격을 하고 그외는 attackmove를 한다.
 								if(enemyCombatUnits.size() > 0) {
 									System.out.println("적 공격유닛 있음. attackUnit : " + enemyCombatUnits.get(0).getType());
 									commandUtil.attackUnit(unit, enemyCombatUnits.get(0));
 								} else {
-									System.out.println("적 공격유닛 없음. 본진 공격");
+									//System.out.println("적 공격유닛 없음. 본진 공격");
 									commandUtil.attackMove(unit, targetBaseLocation.getPosition());
 								}
+								
 							}
-						} 
+						}
 					}
 				}
 			}
